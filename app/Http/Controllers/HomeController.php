@@ -20,11 +20,11 @@ class HomeController extends Controller
         /**
          * @var Collection $lastest
          */
-        $lastest = Product::orderBy('created_at', 'desc')->take(6)->get();
-
-        while ($lastest->count() < 6) { 
-            $lastest->push($lastest[0]);
-        }
+        $lastest = Product::where('quantity', '>', 0)->orderBy('created_at', 'desc')->take(6)->get();
+        if ($lastest->count() > 0)
+            while ($lastest->count() < 6) {
+                $lastest->push($lastest[0]);
+            }
         return view('home/pages/shop', ['categories' => $categories, 'lastest_products' => $lastest]);
     }
 }

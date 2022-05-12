@@ -27,9 +27,10 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
+            readonly: true,
             field: "quantity",
             display: "Số lượng",
-            default: "",
+            default: 0,
             type: "text",
         },
         {
